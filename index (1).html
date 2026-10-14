@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equipos Eléctricos y de Energía</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Combos de energía solar e internet satelital para hogares, comercios e industrias. Mira el catálogo y agenda tu inspección técnica.">
+<meta property="og:title" content="Equipos Eléctricos y de Energía">
+<meta property="og:description" content="Combos de energía solar e internet satelital. Mira el catálogo y agenda tu inspección técnica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: catálogo de una columna; cada combo es una ficha con "placa de datos" (kVA · kWh · paneles) y color propio por tipo de lugar. */
+:root {
+  --bg:#eef2f1; --card:#ffffff; --ink:#11201c; --mute:#4c5c57; --line:#cfd8d5;
+  --navy:#12304a; --volt:#f2b705; --volt-ink:#2b2100;
+  --wa:#17824a; --wa-ink:#ffffff; --no:#a1241f; --si:#17824a;
+  --hogar:#b45309; --hogar-soft:#fdf1e3;
+  --comercio:#1d5fbf; --comercio-soft:#e6effb;
+  --industria:#4a4f57; --industria-soft:#ebedf0;
+  --internet:#6b3fb8; --internet-soft:#f0eafb;
+  --plate:#f6f8f7; --focus:#1d5fbf;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#0f1715; --card:#18221f; --ink:#e9efed; --mute:#a7b5b0; --line:#33433e;
+  --navy:#cfe1f0; --volt:#f5c43a; --volt-ink:#231a00;
+  --wa:#2fae6b; --wa-ink:#06140c; --no:#ff9b94; --si:#5fd395;
+  --hogar:#f0a35a; --hogar-soft:#2c2116;
+  --comercio:#7fb0f5; --comercio-soft:#17243a;
+  --industria:#b9c0c9; --industria-soft:#22272d;
+  --internet:#b89af0; --internet-soft:#251c38;
+  --plate:#131c19; --focus:#7fb0f5; color-scheme:dark;
+}}
+:root[data-theme="dark"] {
+  --bg:#0f1715; --card:#18221f; --ink:#e9efed; --mute:#a7b5b0; --line:#33433e;
+  --navy:#cfe1f0; --volt:#f5c43a; --volt-ink:#231a00;
+  --wa:#2fae6b; --wa-ink:#06140c; --no:#ff9b94; --si:#5fd395;
+  --hogar:#f0a35a; --hogar-soft:#2c2116;
+  --comercio:#7fb0f5; --comercio-soft:#17243a;
+  --industria:#b9c0c9; --industria-soft:#22272d;
+  --internet:#b89af0; --internet-soft:#251c38;
+  --plate:#131c19; --focus:#7fb0f5; color-scheme:dark;
+}
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font:18px/1.55 var(--f-body); }
+h1,h2,h3 { font-family:var(--f-display); text-wrap:balance; margin:0; line-height:1.15; }
+a { color:inherit; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:3px; border-radius:6px; }
+.wrap { max-width:980px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Barra superior */
+.top { position:sticky; top:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg); border-bottom:1px solid var(--line); }
+.top .wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:10px; }
+.brand { display:flex; align-items:center; gap:10px; text-decoration:none; min-width:0; }
+.brand svg { flex:none; }
+.brand b { font-family:var(--f-display); font-stretch:85%; font-weight:800; font-size:1.05rem; line-height:1.1; color:var(--navy); }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px; padding:0 20px; border-radius:12px; border:0;
+       font:700 1rem/1 var(--f-body); text-decoration:none; cursor:pointer; }
+.btn-volt { background:var(--navy); color:var(--bg); }
+.btn-wa { background:var(--wa); color:var(--wa-ink); }
+.btn-line { background:transparent; color:var(--ink); border:2px solid var(--line); }
+.top .btn { min-height:46px; padding:0 16px; flex:none; }
+
+/* Portada */
+.hero { padding-block:28px 8px; }
+.hero h1 { font-size:clamp(2rem, 6vw, 3.1rem); font-stretch:80%; font-weight:800; color:var(--navy); letter-spacing:-.01em; }
+.hero p { max-width:58ch; color:var(--mute); margin:12px 0 0; font-size:1.08rem; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+
+/* Filtros */
+.filters { padding-block:22px 6px; }
+.filters h2 { font-size:1.05rem; font-weight:700; color:var(--mute); text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; }
+.pill { min-height:48px; padding:0 18px; border-radius:999px; border:2px solid var(--line); background:var(--card); color:var(--ink);
+        font:700 1rem/1 var(--f-body); cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+.pill .dot { width:12px; height:12px; border-radius:50%; background:var(--c, var(--navy)); }
+.pill[aria-pressed="true"] { background:var(--navy); color:var(--bg); border-color:var(--navy); }
+.pill[aria-pressed="true"] .dot { box-shadow:0 0 0 2px var(--bg); }
+.count { margin:14px 0 0; color:var(--mute); font-size:.95rem; }
+
+/* Fichas de combo */
+.list { display:grid; gap:22px; padding-block:14px 8px; }
+.combo { background:var(--card); border:2px solid var(--line); border-radius:16px; overflow:hidden; }
+.combo-head { background:var(--soft); border-bottom:2px solid var(--c); padding:12px 18px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+.cat { display:inline-flex; align-items:center; gap:8px; font-weight:700; color:var(--c); font-size:.98rem; }
+.cat svg { flex:none; }
+.num { font-family:var(--f-display); font-stretch:80%; font-weight:700; color:var(--mute); font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
+.combo-body { padding:18px; display:grid; gap:16px; }
+.title-row { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap; }
+.title-row > div { min-width:0; }
+.combo h3 { font-size:1.75rem; font-weight:800; font-stretch:85%; }
+.tag { display:block; margin-top:4px; color:var(--c); font-weight:700; font-size:.98rem; }
+.desc { margin:8px 0 0; color:var(--mute); max-width:60ch; }
+.price { text-align:right; }
+.price b { display:block; font-family:var(--f-display); font-weight:800; font-size:2rem; font-variant-numeric:tabular-nums; color:var(--ink); line-height:1; }
+.price span { font-size:.88rem; color:var(--mute); }
+
+/* Placa de datos */
+.plate { display:grid; grid-template-columns:repeat(3, 1fr); border:2px solid var(--ink); border-radius:10px; background:var(--plate); overflow:hidden; }
+.plate div { padding:10px 12px; border-left:1px solid var(--line); min-width:0; }
+.plate div:first-child { border-left:0; }
+.plate small { display:block; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); font-weight:700; }
+.plate b { font-family:var(--f-display); font-stretch:85%; font-weight:800; font-size:1.45rem; font-variant-numeric:tabular-nums; }
+
+.backup { display:flex; align-items:center; gap:12px; background:var(--soft); border-radius:10px; padding:12px 14px; }
+.backup svg { flex:none; color:var(--c); }
+.backup p { margin:0; }
+.backup b { font-size:1.12rem; }
+
+.onoff { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px 24px; }
+.onoff h4 { margin:0 0 6px; font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); }
+.onoff ul { list-style:none; margin:0; padding:0; display:grid; gap:4px; }
+.onoff li { display:flex; gap:8px; align-items:flex-start; }
+.onoff li::before { flex:none; font-weight:700; width:1.2em; text-align:center; }
+.yes li::before { content:"✓"; color:var(--si); }
+.nop li::before { content:"✕"; color:var(--no); }
+
+details { border-top:1px dashed var(--line); padding-top:12px; }
+summary { cursor:pointer; font-weight:700; min-height:44px; display:flex; align-items:center; gap:8px; list-style:none; color:var(--navy); }
+summary::-webkit-details-marker { display:none; }
+summary::before { content:"+"; display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; border:2px solid currentColor; font-size:1.1rem; line-height:1; }
+details[open] summary::before { content:"–"; }
+.det { display:grid; gap:12px; margin-top:8px; }
+.tbl-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:.98rem; }
+th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); }
+.det ul { margin:0; padding-left:1.2rem; }
+.fine { font-size:.88rem; color:var(--mute); margin:0; }
+.combo-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.combo-actions .btn { flex:1 1 240px; }
+
+/* Cómo funciona */
+section.block { padding-block:36px 8px; }
+section.block > h2 { font-size:1.8rem; font-weight:800; font-stretch:85%; color:var(--navy); margin-bottom:16px; }
+.steps { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; counter-reset:s; }
+.steps li { counter-increment:s; background:var(--card); border:2px solid var(--line); border-radius:14px; padding:16px; }
+.steps li::before { content:counter(s); display:block; color:var(--navy); font:800 2rem/1 var(--f-display); margin-bottom:8px; }
+.steps b { display:block; font-size:1.08rem; margin-bottom:4px; }
+.steps span { color:var(--mute); font-size:.98rem; }
+
+/* Agendar */
+.book { background:var(--card); border:2px solid var(--navy); border-radius:18px; padding:22px 18px; display:grid; gap:16px; }
+.book p.lead { margin:0; color:var(--mute); }
+.fields { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px 18px; }
+.field { display:grid; gap:6px; min-width:0; }
+.field.full { grid-column:1 / -1; }
+.field label, .field legend { font-weight:700; }
+.field input, .field select, .field textarea { width:100%; min-height:52px; padding:10px 14px; font:inherit; color:var(--ink); background:var(--bg);
+  border:2px solid var(--line); border-radius:10px; }
+.field textarea { min-height:90px; resize:vertical; }
+.field input[aria-invalid="true"] { border-color:var(--no); }
+.err { color:var(--no); font-size:.92rem; margin:0; }
+fieldset.field { border:0; padding:0; margin:0; }
+.seg { display:flex; gap:10px; flex-wrap:wrap; }
+.seg label { flex:1 1 130px; display:flex; align-items:center; gap:10px; min-height:52px; padding:0 14px; border:2px solid var(--line); border-radius:10px; cursor:pointer; font-weight:700; background:var(--bg); }
+.seg input { width:22px; height:22px; accent-color:var(--navy); }
+.seg label:has(input:checked) { border-color:var(--navy); }
+.send { display:grid; gap:10px; }
+.send .btn { width:100%; min-height:58px; font-size:1.1rem; }
+.phone { text-align:center; color:var(--mute); margin:0; font-size:.98rem; }
+.phone b { color:var(--ink); user-select:all; font-variant-numeric:tabular-nums; }
+
+/* Preguntas */
+.faq { display:grid; gap:10px; }
+.faq details { background:var(--card); border:2px solid var(--line); border-radius:12px; padding:6px 16px 10px; border-top:2px solid var(--line); }
+.faq p { margin:6px 0 4px; color:var(--mute); }
+
+footer { padding-block:36px 40px; color:var(--mute); font-size:.92rem; }
+footer .wrap { display:grid; gap:6px; border-top:1px solid var(--line); padding-top:18px; }
+
+@media (max-width:520px) {
+  body { font-size:17px; }
+  .price { text-align:left; }
+  .plate b { font-size:1.2rem; }
+  .plate div { padding:8px 9px; }
+  .top .btn span.long { display:none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior:smooth; }
+  .btn, .pill { transition:transform .12s ease, filter .12s ease; }
+  .btn:hover, .pill:hover { filter:brightness(1.05); }
+  .btn:active, .pill:active { transform:scale(.98); }
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Equipos Eléctricos y de Energía, inicio">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><path d="M22.5 4 9 23h9.5L15.5 36 31 16h-9.5L22.5 4z" fill="var(--navy)"/></svg>
+      <b>Equipos Eléctricos<br>y de Energía</b>
+    </a>
+    <a class="btn btn-volt" href="#agendar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Agendar<span class="long"> cita</span></span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <h1>Energía que no se va cuando se va la luz</h1>
+    <p>Combos de energía solar con batería de litio e internet satelital, listos para hogares, comercios e industrias. Elige el tuyo y agenda una inspección técnica sin compromiso.</p>
+    <div class="hero-actions">
+      <a class="btn btn-volt" href="#combos">Ver los combos</a>
+      <a class="btn btn-line" href="#agendar">Agendar inspección</a>
+    </div>
+  </div>
+
+  <div class="wrap filters" id="combos">
+    <h2>¿Para dónde lo necesitas?</h2>
+    <div class="pills" role="group" aria-label="Filtrar combos">
+      <button class="pill" type="button" data-f="todos" aria-pressed="true">Todos</button>
+      <button class="pill" type="button" data-f="hogar" aria-pressed="false" style="--c:var(--hogar)"><span class="dot"></span>Hogar</button>
+      <button class="pill" type="button" data-f="comercio" aria-pressed="false" style="--c:var(--comercio)"><span class="dot"></span>Comercio</button>
+      <button class="pill" type="button" data-f="industria" aria-pressed="false" style="--c:var(--industria)"><span class="dot"></span>Industria</button>
+      <button class="pill" type="button" data-f="internet" aria-pressed="false" style="--c:var(--internet)"><span class="dot"></span>Internet satelital</button>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </div>
+
+  <div class="wrap list" id="list"></div>
+
+  <section class="wrap block" id="como">
+    <h2>Cómo funciona</h2>
+    <ol class="steps">
+      <li><b>Elige un combo</b><span>Según lo que quieres mantener encendido en tu casa, comercio o planta.</span></li>
+      <li><b>Agenda la inspección</b><span>Escoge el día y el horario. Te confirmamos por WhatsApp.</span></li>
+      <li><b>El ingeniero visita</b><span>Revisa tu instalación eléctrica, confirma el combo correcto y te entrega el presupuesto final.</span></li>
+      <li><b>Instalación</b><span>Coordinamos la fecha y dejamos el sistema funcionando y explicado.</span></li>
+    </ol>
+  </section>
+
+  <section class="wrap block" id="agendar">
+    <h2>Agenda tu inspección técnica</h2>
+    <form class="book" id="book" novalidate>
+      <p class="lead">Completa estos datos. Al tocar el botón verde se abre WhatsApp con tu solicitud lista para enviar.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="nombre" autocomplete="name" placeholder="Ej.: María Pérez" required>
+          <p class="err" id="e-nombre" hidden>Escribe tu nombre.</p>
+        </div>
+        <div class="field">
+          <label for="f-zona">Ciudad o sector</label>
+          <input id="f-zona" name="zona" autocomplete="address-level2" placeholder="Ej.: Guasipati, centro" required>
+          <p class="err" id="e-zona" hidden>Escribe dónde sería la inspección.</p>
+        </div>
+        <div class="field full">
+          <label for="f-combo">Combo de interés</label>
+          <select id="f-combo" name="combo"></select>
+        </div>
+        <div class="field">
+          <label for="f-fecha">Día que prefieres</label>
+          <input id="f-fecha" name="fecha" type="date">
+        </div>
+        <fieldset class="field">
+          <legend>Horario</legend>
+          <div class="seg">
+            <label for="f-h1"><input type="radio" id="f-h1" name="horario" value="Mañana" checked>Mañana</label>
+            <label for="f-h2"><input type="radio" id="f-h2" name="horario" value="Tarde">Tarde</label>
+          </div>
+        </fieldset>
+        <div class="field full">
+          <label for="f-nota">¿Qué quieres mantener encendido? (opcional)</label>
+          <textarea id="f-nota" name="nota" placeholder="Ej.: 2 neveras, aire acondicionado y bomba de agua"></textarea>
+        </div>
+      </div>
+      <div class="send">
+        <a class="btn btn-wa" id="send" href="#" target="_blank" rel="noopener">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          Enviar solicitud por WhatsApp
+        </a>
+        <p class="phone">O escríbenos directo al <b>+58 414 377 6317</b></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="wrap block" id="preguntas">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      <details><summary>¿La inspección tiene costo?</summary><p>Agenda la cita y te confirmamos por WhatsApp las condiciones de la visita según tu zona.</p></details>
+      <details><summary>¿El precio incluye la instalación?</summary><p>Los precios son de contado por los equipos del combo. El ingeniero confirma en la inspección el costo de instalación y el presupuesto final.</p></details>
+      <details><summary>¿Cuántas horas dura la batería?</summary><p>Cada combo muestra un estimado con consumos típicos. La duración real depende de los equipos que tengas encendidos a la vez. De día los paneles alimentan la casa y cargan la batería al mismo tiempo.</p></details>
+      <details><summary>¿Puedo ampliar el sistema después?</summary><p>Sí. Algunos combos aceptan más batería o más paneles. El ingeniero te dice en la inspección cómo dejarlo preparado.</p></details>
+      <details><summary>¿Hay facilidades de pago?</summary><p>Pregunta al agendar tu cita y te explicamos las opciones disponibles.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:var(--ink)">Equipos Eléctricos y de Energía</b>
+    <span>WhatsApp: +58 414 377 6317</span>
+    <span>Precios de contado en dólares, referenciales y sujetos a disponibilidad. Los tiempos de batería son estimados con consumos típicos; el ingeniero confirma el combo adecuado en la inspección.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var WA = "584143776317";
+  var CATS = {
+    hogar: { label:"Hogar", c:"var(--hogar)", s:"var(--hogar-soft)", icon:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>' },
+    comercio: { label:"Comercio o bodega", c:"var(--comercio)", s:"var(--comercio-soft)", icon:'<path d="M3 9h18l-1.5-5h-15z"/><path d="M4 9v11h16V9"/><path d="M9 20v-6h6v6"/>' },
+    industria: { label:"Industria", c:"var(--industria)", s:"var(--industria-soft)", icon:'<path d="M3 20V10l6 4v-4l6 4V6h6v14z"/>' },
+    internet: { label:"Internet satelital", c:"var(--internet)", s:"var(--internet-soft)", icon:'<path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1.2"/>' }
+  };
+  var BOLT = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 10v4"/><path d="m12 8.5-3 4h4l-3 4"/></svg>';
+
+  var COMBOS = [
+    { id:"hogar-esencial", cats:["hogar"], name:"Hogar Esencial", tag:"Más accesible", price:2890, kva:"3 kVA", bat:"2.56 kWh", pan:"4 × 580 W",
+      desc:"Respaldo para lo esencial del hogar durante los apagones: nevera, luces, ventiladores, TV, internet y punto de venta.",
+      eq:[["Inversor híbrido de onda pura","Felicity Solar","3 kVA · 24 V con controlador MPPT"],["Batería de litio LiFePO4","","24 V · 100 Ah · 2.56 kWh · 6,000 ciclos"],["Paneles solares","","4 paneles monocristalinos Tier 1 de 580 W · 2.32 kWp"]],
+      si:["Nevera","Iluminación LED completa","Ventiladores","Televisor e internet","Punto de venta o laptop"], no:["Lavadora","Microondas","Bomba de agua","Aire acondicionado"],
+      horas:"4 a 5 horas", horasTxt:"con nevera, luces, TV, ventiladores y router encendidos a la vez",
+      lista:[["Nevera, luces, TV, ventiladores y router","4 a 5 horas"],["Lo anterior más Starlink y una laptop o punto de venta","3 a 4 horas"]],
+      calc:"Consumos típicos: nevera 70 W, luces LED 100 W, TV y ventiladores 220 W, router 15 W (405 W en total); con Starlink 75 W y laptop 60 W, 540 W. Se usa el 81% de la batería." },
+    { id:"hogar-basico", cats:["hogar"], name:"Hogar Básico", price:4120, kva:"3 kVA", bat:"5.12 kWh", pan:"6 × 580 W",
+      desc:"Para familias que quieren asegurar la comida y el confort básico, con el doble de batería.",
+      eq:[["Inversor híbrido de onda pura","Felicity Solar IVEM3048-LV","3 kVA · salida de 110 V"],["Batería de litio LiFePO4","","48 V · 5.12 kWh"],["Paneles solares","","6 paneles de 580 W · 3.48 kWp"]],
+      si:["Nevera","Iluminación LED completa","Ventiladores","Televisor e internet"], no:["Lavadora","Microondas","Bomba de agua","Aire acondicionado"],
+      horas:"9 a 10 horas", horasTxt:"con nevera, luces, TV, ventiladores y router encendidos a la vez",
+      lista:[["Nevera, luces, TV, ventiladores y router","9 a 10 horas"]],
+      calc:"Consumos típicos: nevera 70 W, luces LED 100 W, TV y ventiladores 220 W, router 15 W (405 W en total). Se usa el 81% de la batería." },
+    { id:"hogar-plus", cats:["hogar"], name:"Hogar Plus", price:4890, kva:"5 kVA", bat:"5.12 kWh", pan:"8 × 580 W",
+      desc:"Casas familiares completas: suma lavadora, microondas y bomba de agua.",
+      eq:[["Inversor híbrido de onda pura","Felicity Solar IVEM5048-LV","5 kVA · salida de 110 V"],["Batería de litio LiFePO4","","48 V · 5.12 kWh · ampliable a 10 kWh"],["Paneles solares","","8 paneles de 580 W · 4.64 kWp"]],
+      si:["Nevera","Iluminación LED completa","Ventiladores","Televisor e internet","Lavadora","Microondas","Bomba de agua"], no:["Aire acondicionado"],
+      horas:"7 a 8 horas", horasTxt:"con lo básico encendido más un lavado, 15 min de microondas y 1 hora de bomba",
+      lista:[["Solo nevera, luces, TV, ventiladores y router","9 a 10 horas"],["Lo anterior más un lavado, 15 min de microondas y 1 h de bomba","7 a 8 horas"],["El mismo uso con la ampliación a 10 kWh","16 a 17 horas"]],
+      extra:"Se puede ampliar a batería de 10 kWh para más autonomía.",
+      calc:"Consumos típicos: básico 405 W; lavadora 500 W por 1 hora, microondas 1,200 W por 15 minutos, bomba de agua 370 W por 1 hora. Se usa el 81% de la batería." },
+    { id:"casa-grande", cats:["hogar","comercio"], name:"Casa Grande o Bodega", price:8860, kva:"8 kVA", bat:"10 kWh", pan:"12 × 580 W",
+      desc:"Viviendas con aire acondicionado o bodegas que no pueden parar.",
+      eq:[["Inversor híbrido de onda pura","Felicity Solar IVGM8048","8 kVA · salida de 110/220 V"],["Batería de litio LiFePO4","","48 V · 10 kWh"],["Paneles solares","","12 paneles de 580 W · 6.96 kWp"]],
+      si:["Nevera","Iluminación LED completa","Ventiladores","Televisor e internet","Lavadora","Microondas","Bomba de agua","1 o 2 aires acondicionados"], no:[],
+      horas:"4 a 8 horas", horasTxt:"con luces, neveras y 1 o 2 aires acondicionados funcionando",
+      lista:[["Luces y neveras, sin aire acondicionado","unas 30 horas"],["Lo anterior más 1 aire acondicionado","unas 8 horas"],["Lo anterior más 2 aires acondicionados","4 a 5 horas"]],
+      calc:"Consumos típicos: luces LED 100 W, dos neveras 140 W, cada aire acondicionado 700 W. Se usa el 81% de la batería." },
+    { id:"comercio", cats:["comercio"], name:"Comercio con Exhibidoras", price:9740, kva:"10 kVA", bat:"11.8 kWh", pan:"16 × 580 W",
+      desc:"Carnicerías, charcuterías y comercios medianos con neveras exhibidoras.",
+      eq:[["Inversores híbridos de onda pura","2 × Felicity Solar IVEM5048","10 kVA en total · fase partida"],["Batería de litio LiFePO4","","48 V · 11.8 kWh"],["Paneles solares","","16 paneles de 580 W · 9.28 kWp"]],
+      si:["Neveras exhibidoras","Aire acondicionado","Iluminación y vitrinas","Punto de venta"], no:["Cava cuarto","Congeladores","Motores trifásicos"],
+      horas:"6 a 7 horas", horasTxt:"con 2 exhibidoras, aire acondicionado, vitrinas y punto de venta",
+      lista:[["2 exhibidoras, aire acondicionado, vitrinas y punto de venta","6 a 7 horas"],["Lo mismo, sin el aire acondicionado","unas 13 horas"]],
+      calc:"Consumos típicos: exhibidoras 250 W cada una, aire acondicionado 700 W, vitrinas 150 W, punto de venta 50 W (1,400 W en total). Se usa el 81% de la batería." },
+    { id:"refrigeracion", cats:["comercio"], name:"Comercio y Refrigeración", price:12350, kva:"12 kVA", bat:"15.36 kWh", pan:"18 × 580 W",
+      desc:"Abastos, panaderías y minimarkets con cava cuarto pequeña y varios congeladores.",
+      eq:[["Inversor híbrido de onda pura","Shunde Energy 12 kVA","12 kVA · salida de 220 V"],["Batería de litio LiFePO4","","48 V · 15.36 kWh"],["Paneles solares","","18 paneles de 580 W · 10.44 kWp"]],
+      si:["Cava cuarto pequeña","Congeladores","Neveras exhibidoras","Aire acondicionado","Iluminación y vitrinas","Punto de venta"], no:["Motores trifásicos"],
+      horas:"9 a 10 horas", horasTxt:"con cava cuarto, congeladores, exhibidora, luces y punto de venta",
+      lista:[["Cava cuarto, congeladores, exhibidora, luces y punto de venta","9 a 10 horas"],["Solo el frío: cava, congeladores y exhibidora","unas 12 horas"]],
+      calc:"Consumos típicos: cava cuarto 450 W promedio, dos congeladores 150 W cada uno, exhibidora 250 W, luces 150 W, punto de venta 50 W (1,200 W en total). Se usa el 81% de la batería." },
+    { id:"industrial-trifasico", cats:["industria"], name:"Industria Trifásica", price:20960, kva:"18 kVA", bat:"23.6 kWh", pan:"26 × 580 W",
+      desc:"Talleres mecánicos, aserraderos y plantas con motores trifásicos y maquinaria pesada.",
+      eq:[["Inversor trifásico","SRNE 18 kVA","18 kVA · trifásico 220/380 V"],["Batería de litio LiFePO4","","48 V · 23.6 kWh"],["Paneles solares","","26 paneles de 580 W · 15.08 kWp"]],
+      si:["Motores trifásicos","Maquinaria pesada","Compresores industriales","Iluminación del taller o la planta"], no:[],
+      horas:"3 a 6 horas", horasTxt:"según la maquinaria que trabaje a la vez",
+      lista:[["Carga de 3 kW, por ejemplo un motor de 3 HP y las luces","unas 6 horas"],["Carga de 5 kW","3 a 4 horas"],["Carga de 8 kW","2 a 3 horas"]],
+      calc:"Se usa el 81% de la batería de 23.6 kWh. Los motores consumen más al arrancar; la carga real se define en la inspección." },
+    { id:"central-solar", cats:["industria"], name:"Central Solar", price:null, desc:"Proyectos de 25, 30 y 50 kW diseñados a la medida de su planta. Los equipos se definen después de la inspección." },
+    { id:"solar-starlink", cats:["internet"], name:"Conectividad Total y Minería", tag:"El más pedido en zonas mineras y rurales", price:5900, kva:"5 kVA", bat:"5.12 kWh", pan:"8 × 580 W",
+      desc:"Energía solar más internet satelital para fincas, campamentos mineros y comercios donde se cae la señal.",
+      eq:[["Inversor híbrido de onda pura","Felicity Solar","5 kVA"],["Batería de litio LiFePO4","","48 V · 5.12 kWh"],["Paneles solares","","8 paneles de 580 W · 4.64 kWp"],["Antena de internet satelital","Starlink","150 a 250 Mbps · la mensualidad del servicio se paga aparte"]],
+      si:["Internet satelital","Punto de venta","Cámaras de seguridad","Computadoras","Nevera y luces"], no:["Aire acondicionado","Lavadora y bomba de agua"],
+      horas:"unas 12 horas", horasTxt:"de noche, con internet, punto de venta, cámaras, computadora, nevera y luces",
+      lista:[["Internet, punto de venta, cámaras, computadora, nevera y luces","unas 12 horas"]],
+      calc:"Consumos típicos: antena 75 W, punto de venta 50 W, cámaras 20 W, computadora 60 W, nevera 70 W, luces 60 W (335 W en total). Se usa el 81% de la batería." },
+    { id:"starlink-solo", cats:["internet"], name:"Internet satelital Starlink", price:null,
+      desc:"Solo la antena de internet satelital, para donde no llega la señal. También se puede sumar a cualquier combo de energía.",
+      eq:[["Antena de internet satelital","Starlink","150 a 250 Mbps · la mensualidad del servicio se paga aparte"]] }
+  ];
+
+  function money(n) { return "$" + n.toLocaleString("en-US"); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]; }); }
+
+  var list = document.getElementById("list");
+  var html = "";
+  COMBOS.forEach(function (k, i) {
+    var cat = CATS[k.cats[0]];
+    var catLabel = k.cats.map(function (c) { return CATS[c].label; }).join(" · ");
+    var h = '<article class="combo" id="combo-' + k.id + '" data-cats="' + k.cats.join(" ") + '" style="--c:' + cat.c + ';--soft:' + cat.s + '">';
+    h += '<div class="combo-head"><span class="cat"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">' + cat.icon + '</svg>' + esc(catLabel) + '</span><span class="num">Combo ' + (i + 1) + '</span></div>';
+    h += '<div class="combo-body"><div class="title-row"><div><h3>' + esc(k.name) + '</h3>' + (k.tag ? '<span class="tag">' + esc(k.tag) + '</span>' : '') + '<p class="desc">' + esc(k.desc) + '</p></div>';
+    h += '<div class="price">' + (k.price ? '<b>' + money(k.price) + '</b><span>precio de contado</span>' : '<b>A cotizar</b><span>según inspección</span>') + '</div></div>';
+    if (k.kva) {
+      h += '<div class="plate" aria-label="Datos técnicos"><div><small>Potencia</small><b>' + k.kva + '</b></div><div><small>Batería</small><b>' + k.bat + '</b></div><div><small>Paneles</small><b>' + k.pan + '</b></div></div>';
+    }
+    if (k.horas) {
+      h += '<div class="backup">' + BOLT + '<p>Respaldo con batería: <b>' + esc(k.horas) + '</b><br><span class="fine">' + esc(k.horasTxt) + '</span></p></div>';
+    }
+    if (k.si) {
+      h += '<div class="onoff"><div><h4>Mantiene encendido</h4><ul class="yes">' + k.si.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul></div>';
+      if (k.no && k.no.length) h += '<div><h4>No incluye</h4><ul class="nop">' + k.no.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul></div>';
+      h += '</div>';
+    }
+    if (k.eq) {
+      h += '<details><summary>Ver equipos del combo</summary><div class="det"><div class="tbl-wrap"><table><thead><tr><th>Equipo</th><th>Marca y modelo</th><th>Especificación</th></tr></thead><tbody>';
+      h += k.eq.map(function (e) { return "<tr><td>" + esc(e[0]) + "</td><td>" + (e[1] ? esc(e[1]) : "Tier 1") + "</td><td>" + esc(e[2]) + "</td></tr>"; }).join("");
+      h += '</tbody></table></div>';
+      if (k.extra) h += '<p class="fine"><b>Ampliación:</b> ' + esc(k.extra) + '</p>';
+      if (k.lista) h += '<div><h4 class="fine" style="text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:4px">Horas de respaldo estimadas</h4><ul>' + k.lista.map(function (l) { return "<li>" + esc(l[0]) + ": <b>" + esc(l[1]) + "</b></li>"; }).join("") + '</ul></div>';
+      if (k.calc) h += '<p class="fine">' + esc(k.calc) + ' Es una estimación; el ingeniero la confirma en la inspección.</p>';
+      h += '</div></details>';
+    }
+    h += '<div class="combo-actions"><a class="btn btn-volt" href="#agendar" data-pick="' + k.id + '">Agendar inspección para este combo</a></div>';
+    h += '</div></article>';
+    html += h;
+  });
+  list.innerHTML = html;
+
+  // Filtros
+  var pills = document.querySelectorAll(".pill");
+  var cards = list.querySelectorAll(".combo");
+  var count = document.getElementById("count");
+  function applyFilter(f) {
+    var n = 0;
+    cards.forEach(function (c) {
+      var ok = f === "todos" || c.getAttribute("data-cats").split(" ").indexOf(f) !== -1;
+      c.hidden = !ok; if (ok) n++;
+    });
+    pills.forEach(function (p) { p.setAttribute("aria-pressed", p.getAttribute("data-f") === f ? "true" : "false"); });
+    count.textContent = n === 1 ? "1 combo" : n + " combos";
+    try { localStorage.setItem("eee-filtro", f); } catch (e) {}
+  }
+  pills.forEach(function (p) { p.addEventListener("click", function () { applyFilter(p.getAttribute("data-f")); }); });
+  var saved = "todos";
+  try { saved = localStorage.getItem("eee-filtro") || "todos"; } catch (e) {}
+  applyFilter(document.querySelector('.pill[data-f="' + saved + '"]') ? saved : "todos");
+
+  // Formulario
+  var sel = document.getElementById("f-combo");
+  sel.innerHTML = '<option value="">Todavía no sé, quiero asesoría</option>' + COMBOS.map(function (k) {
+    return '<option value="' + k.id + '">' + esc(k.name) + (k.price ? " · " + money(k.price) : " · a cotizar") + '</option>';
+  }).join("");
+
+  var fecha = document.getElementById("f-fecha");
+  var t = new Date();
+  function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  fecha.min = iso(t);
+
+  list.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-pick]");
+    if (!a) return;
+    sel.value = a.getAttribute("data-pick");
+    update();
+    setTimeout(function () { document.getElementById("f-nombre").focus({ preventScroll:true }); }, 350);
+  });
+
+  var send = document.getElementById("send");
+  var form = document.getElementById("book");
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function message() {
+    var k = COMBOS.filter(function (x) { return x.id === sel.value; })[0];
+    var lines = ["Hola, quiero agendar una inspección técnica."];
+    lines.push("Nombre: " + val("f-nombre"));
+    lines.push("Ciudad o sector: " + val("f-zona"));
+    lines.push("Combo: " + (k ? k.name + (k.price ? " (" + money(k.price) + " de contado)" : " (a cotizar)") : "Quiero asesoría para elegir"));
+    if (fecha.value) {
+      var p = fecha.value.split("-");
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      lines.push("Día que prefiero: " + d.toLocaleDateString("es-VE", { weekday:"long", day:"numeric", month:"long" }));
+    }
+    var h = form.querySelector('input[name="horario"]:checked');
+    lines.push("Horario: " + (h ? h.value : "Mañana"));
+    if (val("f-nota")) lines.push("Quiero mantener encendido: " + val("f-nota"));
+    return lines.join("\n");
+  }
+  function update() { send.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(message()); }
+  form.addEventListener("input", update);
+  form.addEventListener("change", update);
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  update();
+
+  function check(id) {
+    var el = document.getElementById("f-" + id), bad = !el.value.trim();
+    el.setAttribute("aria-invalid", bad ? "true" : "false");
+    document.getElementById("e-" + id).hidden = !bad;
+    return !bad;
+  }
+  send.addEventListener("click", function (e) {
+    var ok = check("nombre") & check("zona");
+    if (!ok) {
+      e.preventDefault();
+      (document.querySelector('[aria-invalid="true"]') || {}).focus && document.querySelector('[aria-invalid="true"]').focus();
+      return;
+    }
+    update();
+  });
+  ["nombre", "zona"].forEach(function (id) {
+    document.getElementById("f-" + id).addEventListener("input", function () { if (this.getAttribute("aria-invalid") === "true") check(id); });
+  });
+})();
+</script>
+
+</body>
+</html>
